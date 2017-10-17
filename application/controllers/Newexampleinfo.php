@@ -1,10 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Newexampleinfo extends CI_Controller {
+class NewExampleInfo extends CI_Controller {
 
 	/**
-	 * This is Newexampleinfo page controller.
+	 * This is NewExampleInfo page controller.
+	 * Develope on 19th July'2016 by Hemanth Kumar
 	 */
 	public function index()
 	{
