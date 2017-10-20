@@ -16,6 +16,8 @@ class Subscores extends CI_Controller {
 			
 			$arrData['subscore_status'] = $this->adminmodel->fetch_subscores_status();
 			
+			$arrData['levels'] = $this->adminmodel->fetch_levels();
+			
 			$this->load->view('sub_scores', $arrData);
 		}
 		else

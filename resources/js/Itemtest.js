@@ -74,44 +74,49 @@ $(document).on("keydown", disableF5);
 			
 			//Disable the radio buttons
 			$(":radio[name='SelectOption']").attr("disabled", true);
-			if(subscore_status.subscore_check == 1) 
-				// if(subScore.subscore_status == 1)
-			{
-				 for(var i=0;i<subScores.length;i++) {
-					
-					if((parseInt($("#hdnQuestionNo").val())+1) == subScores[i].questions) {
-						var minScore = subScores[i].min_score;
-						var maxScore = subScores[i].max_score;
-						console.log("success");
-						$.ajax({
-							'type'		: 'POST',
-							'url'		: strBaseURL+'tonaltest/get_user_score', 
-							'ajax' 		: true,
-							'success' 	: function(response){
-											if(response <= minScore || response >= maxScore) 
-											{
-												$("#test-completed").trigger('click');
-												window.location.href = $("#aNextButtonWrapper").attr('href');
-											}
-										},
-							'failure' 	: function(){}
-						});
-					}
-				 }
-				 
-			}
 			
 			setTimeout(function(){
-
+				
 				if((parseInt($("#hdnQuestionNo").val())+1) == arrQuestions.length)
-				{
-					//$('.NextButtonWrapper').show();
-					$("#test-completed").trigger('click');
-					setTimeout(function(){
-						window.location.href = $("#aNextButtonWrapper").attr('href');
-					},2000);
+				{	
+					//Check the subscore functionality.
+					if(subscore_status.subscore_check == 1) 
+					{
+						var nextLevel = Number(CurrentLevel)+1;
+						for(var i=0;i<subScores.length;i++) {
+							if(nextLevel == subScores[i].level) {
+								var minScore = subScores[i].min_score;
+								var maxScore = subScores[i].max_score;
+								$.ajax({
+									'type'		: 'POST',
+									'url'		: strBaseURL+'tonaltest/get_user_score', 
+									'ajax' 		: true,
+									'success' 	: function(response){
+													if(response <= minScore || response >= maxScore) 
+													{
+														$("#test-completed").trigger('click');
+														window.location.href = $("#aNextButton").attr('href');
+													} else {
+														$("#test-completed").trigger('click');
+														setTimeout(function(){
+															window.location.href = $("#aNextButtonWrapper").attr('href');
+														},2000);
+													}
+												},
+									'failure' 	: function(){}
+								});
+							}
+						}
+					
+					} else {
+						//$('.NextButtonWrapper').show();
+						$("#test-completed").trigger('click');
+						setTimeout(function(){
+							window.location.href = $("#aNextButtonWrapper").attr('href');
+						},2000);
+					}
 				}
-
+				
 				var intNextQuestion = parseInt($("#hdnQuestionNo").val())+1;
 
 				if(arrQuestions.length > intNextQuestion)

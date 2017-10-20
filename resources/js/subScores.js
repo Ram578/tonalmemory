@@ -7,7 +7,7 @@ $(document).ready(function(){
 		$('#myModalLabel').text("New Subscore");
 		//append the values to the edit form
 		$('#id').val("");
-		$('#questions').val("");
+		$('#level').val("");
 		$('#score-range').val("");
 	});
 	
@@ -15,12 +15,12 @@ $(document).ready(function(){
 		$('#myModalLabel').text("Edit Subscore");
 		editId = $(this).data("id");
 		currentRow  = $(this).closest('tr');
-		var questions = currentRow.find("td:eq(0)").text();
+		var level = currentRow.find("td:eq(0)").text();
 		var scoreRange = currentRow.find("td:eq(1)").text();
 		
 		//append the values to the edit form
 		$('#id').val(editId);
-		$('#questions').val(questions);
+		$('#level').val(level);
 		$('#score-range').val(scoreRange);
 	});
 	//modal form submit
@@ -28,13 +28,13 @@ $(document).ready(function(){
 		e.preventDefault();
 		var url = strBaseURL+'subscores/edit_subscores'; 
 		var id = $('#id').val();
-		var questions = $('#questions').val();
+		var level = $('#level').val();
 		var scoreRange = $('#score-range').val();
-		if(questions != "" && scoreRange != "") {
+		if(scoreRange != "" && level != "") {
 			var formData = {
 				'id' : id,
-				'questions'    : questions,
-				'score_range' : scoreRange
+				'score_range' : scoreRange,
+				'level' : level
 			}; 
 	
 			$.ajax({
@@ -47,7 +47,7 @@ $(document).ready(function(){
 					if(data.success != "failed") {
 						if(data.status == "update") {
 							//get current row TD's & replace the text with the updated text
-							currentRow.find("td:eq(0)").text(questions);
+							currentRow.find("td:eq(0)").text(level);
 							currentRow.find("td:eq(1)").text(scoreRange);
 							swal("Update!", data.message, "success");
 						} else {

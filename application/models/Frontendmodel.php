@@ -32,7 +32,7 @@ class Frontendmodel extends CI_Model
 
 		$result = $this->db->query($sql);
 		
-		// Check the pitch_questions_order table have sorted questions or not.
+		// Check the tonal_questions_order table have sorted questions or not.
 		if($result->num_rows() > 0) 
 		{
 			$row = $result->row();
@@ -51,7 +51,7 @@ class Frontendmodel extends CI_Model
 		return $array;	
 	}
 	
-	//Get the subscores data from pitch_subscores table
+	//Get the subscores data from tonal_subscores table
 	function fetch_subscores() 
 	{
 		$sql = 'SELECT * FROM tonal_subscores where subscore_status = 1';
@@ -90,7 +90,7 @@ class Frontendmodel extends CI_Model
 	
 	function fetch_subscores_status() 
 	{
-		$sql = "SELECT subscore_check FROM pitch_subscore_checkbox WHERE id=1";
+		$sql = "SELECT subscore_check FROM tonal_subscore_checkbox WHERE id=1";
 		
 		$objQuery = $this->db->query($sql);
 
@@ -133,7 +133,7 @@ class Frontendmodel extends CI_Model
 		}
 	}
 	
-	//Save the user pitch test completed date in users table after the exam is completed.
+	//Save the user tonal test completed date in users table after the exam is completed.
 	function update_test_completed_date()
 	{
 		$status = $_POST['test_status'];

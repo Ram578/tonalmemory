@@ -80,7 +80,7 @@
 												foreach($questions['test'] as $row)
 												{
 											?>
-												<li class="list-group-item" id="<?=$row['id'];?>"><?=$row['serial_number'];?> - <?=$row['audiofilename'];?> - <?=$row['questionlevel'];?></li>
+													<li class="list-group-item" id="<?=$row['id'];?>"><?=$row['serial_number'];?> - <?=$row['audiofilename'];?> - Level <?=$row['questionlevel'];?></li>
 											<?php
 												}
 											?>

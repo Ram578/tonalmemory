@@ -3,6 +3,7 @@
 	var arrQuestions = <?php echo json_encode($Questions); ?>;
 	var subScores = <?php echo json_encode($subscores); ?>;
 	var subscore_status = <?php echo json_encode($subscore_status); ?>;
+	var CurrentLevel = <?php echo json_encode($CurrentLevel); ?>;
 </script>
 <!-- Body content goes here -->
 <section class="intro-wrapper tonal-test-wrapper">
@@ -59,6 +60,7 @@
 		?>
 		<div class="NextButtonWrapper" style="display:none;">
 			<button id="test-completed">Test Completed</button>
+			<a id="aNextButton" href="<?php echo base_url().'thankyou';?>" ><?php echo "Finish"; ?></a>
 			<a id="aNextButtonWrapper" href="<?php if($hasNextLevel){ echo base_url().'introlevel/?level='.$intNextLevel; }else{ echo base_url().'thankyou'; } ?>" ><?php if($hasNextLevel){ echo "Next"; }else{ echo "Finish"; } ?></a> 
 		</div>
 </section>

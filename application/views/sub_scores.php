@@ -56,39 +56,55 @@
 						<input type="radio" class="status" name="active" value="no" <?php echo $subscore_status_code == "no"?"checked":""; ?>> 
 					</div>
 					
-					  <div>
-						<a id="btnAddRow" class="btn btn-primary pull-right col-md-1 col-sm-1" data-toggle="modal" data-target="#myModal"   style="width:130px; min-width:inherit; margin-bottom:2%;"> Add Subscore </a>
-						</div>
-						 <table width="100%" id="subScoresList" cellspacing="0" cellpadding="0" class="table table-responsive table-striped">
-							<thead>
-								<tr>
-									<th>Questions</th>
-									<th>Score Range</th>
-									<th>Status</th>
-									<th>Actions</th>
-								</tr>
-							</thead>
-							<tbody>
-								<?php foreach ($sub_scores as $row): ?>
-									<tr>
-										<td><?=$row['questions'];?></td>
-										<td><?=$row['score_range'];?></td>
-										<td class="text-center">
-											<input type="checkbox" id="activeSubscores" name="active" <?php if($row['subscore_status']){ echo "checked"; } ?> data-id="<?=$row['id'];?>" />
-										</td>
-										<td>
-											<button type="button" class="btn btn-default btn-xs editBtn" title="Edit" data-id="<?=$row['id'];?>" data-toggle="modal" data-target="#myModal">
-												<span class="glyphicon glyphicon-pencil"></span>
-											</button>
-											<button type="button" class="btn btn-default btn-xs deleteBtn" title="Delete" data-id="<?=$row['id'];?>">
-												<span class="glyphicon glyphicon-trash"></span>
-											</button> 
-										</td>
-									</tr>
-								<?php endforeach; ?>
-							</tbody>
-						</table>
+					<table id="questionLevels" style="width:40%;" cellspacing="0" cellpadding="0" class="table table-responsive table-striped">
+						<thead>
+							<tr>
+								<th>Level</th>
+								<th>No. of Questions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php foreach ($levels as $row): ?>
+							<tr>
+								<td><?=$row['questionlevel'];?></td>
+								<td><?=$row['total_questions'];?></td>
+							</tr>
+							<?php endforeach; ?>
+						</tbody>
+					</table>
+					
+					<div>
+						<a id="btnAddRow" class="btn btn-primary pull-right col-md-1 col-sm-1" data-toggle="modal" data-target="#myModal" style="width:130px; min-width:inherit; margin-bottom:2%;"> Add Subscore </a>
 					</div>
+					<table width="100%" id="subScoresList" cellspacing="0" cellpadding="0" class="table table-responsive table-striped">
+						<thead>
+							<tr>
+								<th>Level</th>
+								<th>Score Range</th>
+								<th>Status</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php foreach ($sub_scores as $row): ?>
+								<tr>
+									<td><?=$row['level'];?></td>
+									<td><?=$row['score_range'];?></td>
+									<td class="text-center">
+										<input type="checkbox" id="activeSubscores" name="active" <?php if($row['subscore_status']){ echo "checked"; } ?> data-id="<?=$row['id'];?>" />
+									</td>
+									<td>
+										<button type="button" class="btn btn-default btn-xs editBtn" title="Edit" data-id="<?=$row['id'];?>" data-toggle="modal" data-target="#myModal">
+											<span class="glyphicon glyphicon-pencil"></span>
+										</button>
+										<button type="button" class="btn btn-default btn-xs deleteBtn" title="Delete" data-id="<?=$row['id'];?>">
+											<span class="glyphicon glyphicon-trash"></span>
+										</button> 
+									</td>
+								</tr>
+							<?php endforeach; ?>
+						</tbody>
+					</table>
 				</div>
 			</section>
 			<!-- Body Content ends here -->
@@ -108,8 +124,8 @@
 							<div class="row">
 								<div class="col-md-6 col-sm-6 col-xs-6">
 									<div class="form-group">
-										<label for="">Questions</label>
-										<input type="text" id="questions" class="form-control" placeholder="" value="" />
+										<label for="">Level</label>
+										<input type="number" id="level" class="form-control" placeholder="" value="" />
 									</div>
 								</div>
 								<div class="col-md-6 col-sm-6 col-xs-6">

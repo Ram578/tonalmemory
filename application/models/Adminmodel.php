@@ -287,6 +287,16 @@ class Adminmodel extends CI_Model
 	}
 	
 	//Subscores page functionality
+	//fetch levels from tonal_questions to display in admin subscores view table
+	function fetch_levels()
+	{
+		$strQuery = 'SELECT questionlevel, COUNT(*) as total_questions FROM tonal_questions GROUP BY questionlevel';
+
+		$objQuery = $this->db->query($strQuery);
+
+		return $objQuery->result_array();
+	}
+	
 	//fetch subscores data to display in admin subscores view table
 	function fetch_subscores()
 	{
@@ -311,16 +321,14 @@ class Adminmodel extends CI_Model
 	function update_subscores()
 	{
 		$id = $_POST['id'];
-		$questions = $_POST['questions'];
 		$score_range = $_POST['score_range'];
+		$level = $_POST['level'];
 		
 		$arrData = array(
-                'questions' => $questions,
                 'score_range' => $score_range,
+                'level' => $level,
             );
 
-		//update the row
-		// $this->db->where('id', $id);
 		if($id == "")
 		{
 			//insert row
