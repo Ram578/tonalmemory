@@ -8,6 +8,7 @@ class Thankyou extends CI_Controller {
 	 */
 	public function index()
 	{
+	
 			$arrData['Title'] = 'AIMS - Test';
 
 			$Header = $this->load->view('header', $arrData,true);
@@ -24,8 +25,7 @@ class Thankyou extends CI_Controller {
 
 				$intCounter = 0;
 
-				foreach ($arrResult as $key => $value) 
-				{
+				foreach ($arrResult as $key => $value) {
 					if($value['result'] && $value['includeinscoring'])
 					{
 						$intCounter = $intCounter + 1;
@@ -48,8 +48,7 @@ class Thankyou extends CI_Controller {
 				$arrData['Grade'] = $strGrade;
 
 				$this->load->view('thankyou', $arrData); 
-			}
-			else
+			}else
 			{
 				redirect('/', 'refresh');
 			}

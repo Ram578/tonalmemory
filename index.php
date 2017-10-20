@@ -91,16 +91,6 @@ switch (ENVIRONMENT)
 
 /*
  *---------------------------------------------------------------
- * SET THE DEFAULT TIMEZONE
- *---------------------------------------------------------------
- *
- * Set the default Central Standard Time (CST) Time Zone
- */
-
-	date_default_timezone_set('Canada/Saskatchewan');
-
-/*
- *---------------------------------------------------------------
  * SYSTEM DIRECTORY NAME
  *---------------------------------------------------------------
  *

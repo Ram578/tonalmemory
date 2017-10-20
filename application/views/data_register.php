@@ -1,62 +1,68 @@
 <?=$Header;?>
-	<div class="login-html">
-		<div class="login">
-			<div class="intro-wrapper registrer-wrapper">
-			<!-- Registration Block goes here -->
-				<form class="form-horizontal col-lg-4 col-md-5 col-sm-6 col-xs-6" role="form" id="dataRegisterForm" action="register" method="POST" autocomplete="false">
-					<?php
-						print_r($this->session->flashdata('Errors'));
-					?>
-					<input type="hidden" id="sleFileNumber" placeholder="File Number" class="form-control" name="filenumber" value="<?php echo $file_number?>" autocomplete="false" />
-					<!--h2>Registration Form</h2-->
-					<div class="col_full form-group">
-						<label for="sleFirstName">First Name : </label>
-						<input type="text" id="sleFirstName" placeholder="First Name" class="form-control" maxlength="30" minlength="2" name="firstname" autocomplete="false" />
-					</div>
-					<div class="col_full form-group">
-						<label for="sleLastName">Last Name : </label>
-						<input type="text" id="sleLastName" placeholder="Last Name" class="form-control" maxlength="30" minlength="2" name="lastname" autocomplete="false" />
-					</div>
-					<div class="col_full form-group">
-						<label for="sleAge">Age in Years : </label>
-						<input type="text" id="sleAge" class="form-control" maxlength="3" name="age" autocomplete="false" />
-					</div>
-					<div class="col_full form-group">
-						<div class="row">
-							<div class="col-sm-4 radio-inline">
-								<label>Gender : </label>
-							</div>
-							 <div class="col-sm-4">
-								<label class="radio-inline">
-									<input type="radio" id="rdMaleGender" name="gender" value="Male" onclick="$('#hdnGender').val($(this).val());" required>Male
-								</label>
-							</div>
-							<div class="col-sm-4">
-								<label class="radio-inline">
-									<input type="radio" id="rdFeMaleGender" name="gender" value="Female" onclick="$('#hdnGender').val($(this).val());" required>Female
-								</label>
-							</div>
-						</div>
-					</div>
-				   <!-- /.form-group -->	
-					<div class="form-group">
-						<button disabled="disabled" type="submit" id="RegisterBtn" class="btn btn-primary btn-block">Register</button>
-					</div>
-				</form> <!-- /form -->
-				<!-- Registration Block ends here -->
-			</div>
+	<div class="intro-wrapper registrer-wrapper">
+	<!-- Registration Block goes here -->
+         <form class="form-horizontal col-lg-4 col-md-5 col-sm-6 col-xs-6" role="form" id="ToneRegisterForm" action="register" method="POST" autocomplete="false">
+         		<?php
+         			print_r($this->session->flashdata('Errors'));
+         		?>
+				<input type="hidden" id="sleFileNumber" placeholder="File Number" class="form-control" name="filenumber" value="<?php echo $file_number?>" autocomplete="false" />
+                <!--h2>Registration Form</h2-->
+				<div class="form-group">
+                    <label for="sleFirstName" class="col-sm-4 control-label">First Name : </label>
+                    <div class="col-sm-8">
+                        <input type="text" id="sleFirstName" placeholder="First Name" class="form-control" maxlength="30" minlength="2" name="firstname" autocomplete="false" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="sleLastName" class="col-sm-4 control-label">Last Name : </label>
+                    <div class="col-sm-8">
+                         <input type="text" id="sleLastName" placeholder="Last Name" class="form-control" maxlength="30" minlength="2" name="lastname" autocomplete="false" />
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="sleAge" class="col-sm-4 control-label">Age in Years : </label>
+                    <div class="col-sm-8">
+                        <input type="text" id="sleAge" class="form-control" maxlength="3" name="age" autocomplete="false" />
+                    </div>
+                </div>
+            
+                <div class="form-group">
+                    <label class="control-label col-sm-4">Gender : </label>
+                    <input type="hidden" name="gender" id="hdnGender">
+                    <div class="col-sm-6">
+                        <div class="row">
+                             <div class="col-sm-5">
+                                <label class="radio-inline">
+                                    <input type="radio" id="rdMaleGender" value="Male" name="sex" onclick="$('#hdnGender').val($(this).val());" required>Male
+                                </label>
+                            </div>
+                            <div class="col-sm-5">
+                                <label class="radio-inline">
+                                    <input type="radio" id="rdFeMaleGender" name="sex" value="Female" onclick="$('#hdnGender').val($(this).val());" required>Female
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.form-group -->
+                <div class="form-group">
+                    <div class="col-sm-8 col-sm-offset-4">
+                        <button disabled="disabled" type="submit" id="RegisterBtn" class="btn btn-primary btn-block">Register</button>
+                    </div>
+                </div>
+            </form> <!-- /form -->
+    	<!-- Registration Block ends here -->
 		</div>
-	</div>
 		<!-- JS files will load here -->
 		<!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script src="resources/js/formValidator.js"></script> -->
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<!--<script src="resources/js/formValidator.js"></script>-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
-				$('#dataRegisterForm').bootstrapValidator({
+				$('#ToneRegisterForm').bootstrapValidator({
 					message: 'This value is not valid',
 					fields: {
 						firstname: {

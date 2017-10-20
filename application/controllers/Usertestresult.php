@@ -11,7 +11,8 @@ class Usertestresult extends CI_Controller {
 		$this->load->model('adminmodel');
 
 		$arrData['TestResults'] = $this->adminmodel->FetchTestResult();
-						
+
+		// $arrData['Certiles'] = $this->adminmodel->FetchCertile();
 		foreach ($arrData['TestResults'] as $key => &$value) 
 		{
 			$intScore = $this->adminmodel->FetchUserResult($value['id']);
@@ -20,9 +21,6 @@ class Usertestresult extends CI_Controller {
 
 			$value['certile'] = $this->adminmodel->FetchCertileWRT($intScore, $value['age'], $value['gender']);
 		}
-		
-		// print_r($arrData);
-		// die;
 
 		$this->load->view('user_test_result', $arrData);
 	}
@@ -35,41 +33,17 @@ class Usertestresult extends CI_Controller {
 
 		$arrTemp = array();
 
-		$arrHeaders = array('ID', 'First Name', 'Last Name', 'Age', 'Gender', 'File Number', 'P1', 'P2', 'P3', 'P4', 'P5', 'P6', 'P7');
+		$arrHeaders = array('ID','First Name', 'Last Name', 'Age', 'Gender', 'File Number', 'Score', 'Certile');
+		
+		foreach ($arrResult as $key => &$value) {
+			$intScore = $this->adminmodel->FetchUserResult($value['id']);
 
-		foreach ($arrResult as $key => &$value) 
-		{
-			if(count($value['practice_result']) > 0)
-			{
-				if($value['status'] == 1) {
-					$practiceintQt = 1;
-					foreach ($value['practice_result'] as $key => $qt) 
-					{
-						$value['Practice '.$practiceintQt] = $qt['optionid'];
-						$practiceintQt++;
-					}
-					
-					$value['Practice 3'] = '0';
-					$value['Practice 4'] = '0';
-					$value['Practice 5'] = '0';
-					$value['Practice 6'] = '0';
-					$value['Practice 7'] = '0';
-					
-				} 
-				elseif($value['status'] == 2)
-				{
-					$value['Practice 1'] = '0';
-					$value['Practice 2'] = '0';
-					$practiceintQt = 3;
-					foreach ($value['practice_result'] as $key => $qt) 
-					{
-						$value['Practice '.$practiceintQt] = $qt['optionid'];
-						$practiceintQt++;
-					}
-				}
-				
-			}
-			
+			$value['score'] = $intScore;
+
+			$value['certile'] = $this->adminmodel->FetchCertileWRT($intScore, $value['age'], $value['gender']);
+		}
+
+		foreach ($arrResult as $key => &$value) {
 			$intQt = 1;
 			if(count($value['test_result']) > 0)
 			{
@@ -82,11 +56,14 @@ class Usertestresult extends CI_Controller {
 
 			$arrTempRow = $value;
 			unset($arrTempRow['test_result']);
-			unset($arrTempRow['practice_result']);
 			unset($arrTempRow['active']);
 			unset($arrTempRow['addeddate']);
-			unset($arrTempRow['completeddate']);
-			unset($arrTempRow['status']);
+			unset($arrTempRow['pitch_completed_date']);
+			unset($arrTempRow['time_completed_date']);
+			unset($arrTempRow['tonal_completed_date']);
+			unset($arrTempRow['pitch_status']);
+			unset($arrTempRow['time_status']);
+			unset($arrTempRow['tonal_status']);
 			$arrTemp[] = $arrTempRow;
 		}
 		
@@ -95,31 +72,18 @@ class Usertestresult extends CI_Controller {
 			}, $arrTemp));
 
 		//$this->cleanArray($arrTemp);
-		
-		//If there is no values then it gives empty values
-		foreach ($arrTemp as &$value) 
-		{
+
+		foreach ($arrTemp as &$value) {
 			$intTempCount = count($value);
 			if($maxColumns > $intTempCount)
 			{
-				for($intCtr = ($intTempCount-13); $intCtr < ($maxColumns-$intTempCount); $intCtr++)
+				for($intCtr = ($intTempCount-6); $intCtr < ($maxColumns-$intTempCount); $intCtr++)
 				{
 					$value['Answer '.($intCtr+1)] = ' ';
 				}
 			}
 		}
 		//print_r($arrTemp); exit;
-		foreach ($arrTemp as $key => &$value) 
-		{
-			$intScore = $this->adminmodel->FetchUserResult($value['id']);
-
-			$value['score'] = $intScore;
-
-			$value['certile'] = $this->adminmodel->FetchCertileWRT($intScore, $value['age'], $value['gender']);
-		}
-
-		$arrHeaders[] = 'Score';
-		$arrHeaders[] = 'Certile';
 
 		$arrHeaders = array_unique($arrHeaders);
 		
@@ -136,8 +100,7 @@ class Usertestresult extends CI_Controller {
 
 		fputcsv($display, array_values($arrHeaders), ",", '"');
 		
-		foreach ($arrTemp as $file) 
-		{
+		foreach ($arrTemp as $file) {
 		    $result = [];
 		    array_walk_recursive($file, function($item) use (&$result) {
 		        $result[] = $item;
@@ -155,11 +118,10 @@ class Usertestresult extends CI_Controller {
 		    foreach ($arrTemp as $key => $value) {
 			    fputcsv($display, array_values($value), ",", '"');
 			}
-		  } 
-		  */
+		  }*/
 		 
 		fclose($display);
-		
+
 	}
 
 	function cleanArray(&$array)

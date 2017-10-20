@@ -42,7 +42,6 @@ $(document).ready(function(){
 				url: url,
 				data: formData,
 				success: function (result) {
-					console.log(result);
 					var data = JSON.parse(result);
 					$("#myModal").modal('hide');
 					if(data.success != "failed") {

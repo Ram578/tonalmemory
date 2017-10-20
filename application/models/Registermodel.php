@@ -7,8 +7,6 @@ class Registermodel extends CI_Model
 	public function __construct()
 	{
 		parent::__construct();
-<<<<<<< HEAD
-=======
 		
 		$this->load->helper('date');
 	}
@@ -42,7 +40,6 @@ class Registermodel extends CI_Model
 		}
 		
 		return $arrData;
->>>>>>> dee26513e5d1fc5a55bb231ab750558014c49157
 	}
 	
 	function RegisterUser()
@@ -81,6 +78,5 @@ class Registermodel extends CI_Model
 			}
 		}
 	}
-	
 }
 ?>

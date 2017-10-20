@@ -14,9 +14,10 @@ class Home extends CI_Controller {
 		if(isset($this->session->userdata['UserID']))
 		{
 			redirect('/welcome', 'refresh');
-		}else
+		}
+		else
 		{
-			$arrData['Title'] = 'AIMs - Pitch Discrimination Registration Form';
+			$arrData['Title'] = 'AIMs - Tonal Memory Registration Form';
 
 			$Header = $this->load->view('header', $arrData,true);
 
@@ -45,13 +46,12 @@ class Home extends CI_Controller {
     	$this->load->model('registermodel');
 
     	$result = $this->registermodel->RegisterUser();
-		
-		// var_dump($_POST);
-    	
-		if(is_integer($result))
+
+    	if(is_integer($result))
     	{
     		 redirect('/welcome', 'refresh');
-    	}else
+    	}
+		else
     	{
     		$this->session->set_flashdata('Errors', array($result)); 
 
@@ -87,14 +87,4 @@ class Home extends CI_Controller {
     	} 
 	}
 	
-	public function date_test() 
-	{
-		$this->load->model('registermodel');
-		
-		$result = $this->registermodel->test_date();
-		echo timezones('UM5');
-		echo "\n";
-		var_dump($result);
-		die;
-	}
 }
