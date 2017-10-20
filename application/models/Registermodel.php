@@ -4,10 +4,10 @@
 */
 class Registermodel extends CI_Model
 {
-	function Registermodel() 
-  	{
-    	parent::__construct();
-  	}
+	public function __construct()
+	{
+		parent::__construct();
+	}
 	
 	function RegisterUser()
 	{
