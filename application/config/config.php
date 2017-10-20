@@ -23,8 +23,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
+<<<<<<< HEAD
 // $config['base_url'] = 'http://localhost/projects/aimstonal_new/tonal_memory';
 $config['base_url'] = 'http://139.59.85.41/tonal_memory';
+=======
+// $config['base_url'] = 'http://localhost:8088/musictest';
+$config['base_url'] = 'http://localhost/projects/tonal';
+>>>>>>> dee26513e5d1fc5a55bb231ab750558014c49157
 
 /*
 |--------------------------------------------------------------------------
@@ -516,6 +521,3 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
-
-
-$config['AvailableLevels'] = array(3,4,5,6);

@@ -25,7 +25,7 @@ class Welcome extends CI_Controller {
 			redirect('/', 'refresh');
 		}else
 		{
-			$arrData['Title'] = 'AIMs - Tonal Memory Registration Form';
+			$arrData['Title'] = 'AIMs - Pitch Discrimination Registration Form';
 
 			$Header = $this->load->view('header', $arrData,true);
 			
@@ -35,5 +35,13 @@ class Welcome extends CI_Controller {
 
 			$this->load->view('welcome_message', $arrData);
 		}
+	}
+	
+	
+	public function save_user_status() {
+		
+		$this->load->model('frontendmodel');
+
+		$this->frontendmodel->save_user_status();
 	}
 }

@@ -1,10 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Nextbranchinfo extends CI_Controller {
+class NextBranchInfo extends CI_Controller {
 
 	/**
-	 * This is Nextbranchinfo page controller.
+	 * This is NextBranchInfo page controller.
+	 * Develope on 19th July'2016 by Hemanth Kumar
 	 */
 	public function index()
 	{

@@ -29,7 +29,7 @@ $(document).ready(function(){
 		$('#age').val(age);
 		$('#score').val(score);
 		$("input[name='sex']").attr("checked", false);
-		$('#'+gender).attr('checked', 'checked');
+		$('#gender').attr('checked', 'checked');
 		$('#certile').val(certile);
 	});
 	
@@ -97,7 +97,7 @@ $(document).ready(function(){
 		  closeOnConfirm: false
 		},
 		function(){
-			var url = strBaseURL+'certilescores/delete_row'; 
+			var url = strBaseURL+'certilescores/delete_certile_score_row'; 
 			var formData = {
 				'id'  : itemId
 			};
